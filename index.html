@@ -4,152 +4,566 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Desincrustador Pro Premium 2.0</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      background-color: #111;
-      color: #fff;
+    :root{
+      --bg: #0b0c0f;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --stroke: rgba(255,255,255,.12);
+      --accent: #a7f3d0; /* verde “premium suave” */
+      --accent2: #5eead4;
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+      --max: 1120px;
     }
-    header {
-      background: linear-gradient(145deg, #555, #222);
-      padding: 2rem;
-      text-align: center;
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 500px at 20% 0%, rgba(94,234,212,.10), transparent 55%),
+                  radial-gradient(900px 450px at 90% 10%, rgba(167,243,208,.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
     }
-    header h1 {
-      font-size: 2.8rem;
-      color: #00ffc3;
+
+    a{ color:inherit; }
+    .container{ width: min(var(--max), calc(100% - 32px)); margin:0 auto; }
+
+    /* Topbar */
+    .topbar{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(10,11,14,.70);
+      border-bottom: 1px solid var(--stroke);
     }
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 12px;
     }
-    .hero {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background-color: #000;
-      padding: 3rem 1rem;
+    .brand{
+      display:flex; align-items:center; gap: 10px;
+      font-weight:800; letter-spacing:.3px;
     }
-    .hero img {
-      width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #00ffc3;
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(94,234,212,.10);
     }
-    .features, .install, .price-section, .contact-section {
-      padding: 3rem 1rem;
-      max-width: 900px;
-      margin: auto;
+    nav{
+      display:flex; align-items:center; gap: 14px;
+      font-weight:600; color: var(--muted);
+      flex-wrap:wrap;
     }
-    .features h2, .install h2, .price-section h2, .contact-section h2 {
-      color: #00ffc3;
-      border-bottom: 2px solid #00ffc3;
-      padding-bottom: .5rem;
-      margin-bottom: 1rem;
+    nav a{ text-decoration:none; padding:10px 10px; border-radius: 10px; }
+    nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+
+    .cta{
+      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
     }
-    .price {
-      font-size: 2rem;
-      color: #fff;
-      margin-top: 1rem;
+    .btn{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      transition: .18s ease;
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height: 44px;
     }
-    .btn-buy {
-      background: #00ffc3;
-      color: #000;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.3s;
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
+    .btn-primary{
+      border: 1px solid rgba(94,234,212,.35);
+      background: linear-gradient(135deg, rgba(94,234,212,.22), rgba(167,243,208,.14));
+      box-shadow: 0 14px 40px rgba(94,234,212,.12);
     }
-    .btn-buy:hover {
-      background: #00cfa3;
+
+    /* Hero */
+    header{
+      padding: 54px 0 26px;
     }
-    .payments img {
-      height: 40px;
-      margin: 0.5rem;
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 26px;
+      align-items: start;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
     }
-    input, textarea {
-      padding: .8rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
     }
-    .whatsapp-link {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #25D366;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
+    .steel{
+      position:absolute; inset:-2px;
+      background: radial-gradient(900px 260px at 20% 0%, rgba(255,255,255,.12), transparent 60%),
+                  radial-gradient(700px 280px at 90% 30%, rgba(255,255,255,.08), transparent 62%);
+      pointer-events:none;
+      mix-blend-mode: screen;
+      opacity: .7;
+    }
+    h1{
+      margin:0 0 12px;
+      font-size: clamp(30px, 3.2vw, 46px);
+      letter-spacing:-.6px;
+      line-height: 1.06;
+    }
+    .subtitle{
+      margin:0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .badges{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin: 18px 0 0;
+    }
+    .badge{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight:700;
+      font-size: 12px;
+    }
+    .pricebox{
+      margin-top: 20px;
+      display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+      padding-top: 18px;
+      border-top: 1px solid var(--stroke);
+    }
+    .price{
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+    .price small{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 560px){
+      .gallery{ grid-template-columns: 1fr; }
+    }
+    .shot{
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      cursor: zoom-in;
+      position: relative;
+    }
+    .shot img{
+      width:100%;
+      height:auto;
+      display:block;
+      transform: scale(1.01);
+      transition: .18s ease;
+    }
+    .shot:hover img{ transform: scale(1.04); }
+
+    /* Sections */
+    section{ padding: 28px 0; }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
+      margin: 8px 0 12px;
+    }
+    h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .hint{ color: var(--muted); font-size: 13px; }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px){
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+    li{ margin: 10px 0; line-height: 1.5; }
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px){
+      .kpis{ grid-template-columns: 1fr; }
+    }
+    .kpi{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .kpi strong{ display:block; font-size: 18px; }
+    .kpi span{ color: var(--muted); font-size: 13px; }
+
+    /* Form */
+    form{ display:grid; gap: 10px; }
+    input, textarea{
+      width:100%;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus, textarea:focus{ border-color: rgba(94,234,212,.45); box-shadow: 0 0 0 4px rgba(94,234,212,.10); }
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 680px){
+      .row{ grid-template-columns: 1fr; }
+    }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 60px;
+      color: var(--muted);
+      border-top: 1px solid var(--stroke);
+      margin-top: 24px;
+    }
+
+    /* Lightbox */
+    .lb{
+      position: fixed; inset:0; z-index: 100;
+      background: rgba(0,0,0,.72);
+      display:none; align-items:center; justify-content:center;
+      padding: 16px;
+    }
+    .lb.open{ display:flex; }
+    .lb-inner{
+      width: min(980px, 100%);
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(20,22,28,.92);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .lb-inner img{ width:100%; display:block; }
+    .lb-close{
+      position:absolute; top:10px; right:10px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight:800;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>Desincrustador Pro Premium 2.0</h1>
-    <p>Elimina la cal sin químicos. Protege tu hogar con tecnología de impulsos electromagnéticos.</p>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand"><span class="dot"></span> Desincrustador Pro Premium 2.0</div>
+      <nav aria-label="Secciones">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#instalacion">Instalación</a>
+        <a href="#especificaciones">Especificaciones</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="cta">
+        <a class="btn" href="#contacto">Pedir info</a>
+        <a class="btn btn-primary" href="#comprar">Comprar</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="container">
+    <div class="hero">
+      <div class="hero-card">
+        <div class="steel"></div>
+        <h1>Protege tu instalación del problema de la cal, sin químicos.</h1>
+        <p class="subtitle">
+          Tecnología de impulsos electromagnéticos con control sencillo y diseño premium.
+          Instalación rápida y sin cortar tuberías.
+        </p>
+
+        <div class="badges" aria-label="Puntos clave">
+          <span class="badge">Doble bobina (fría + caliente)</span>
+          <span class="badge">Consumo &lt; 1 W</span>
+          <span class="badge">Instalación DIY ~10 min</span>
+          <span class="badge">Para aguas muy duras</span>
+        </div>
+
+        <div class="pricebox" id="comprar">
+          <div class="price">
+            3.995 €
+            <small>Precio final de venta (IVA incluido si aplica)</small>
+          </div>
+          <button class="btn btn-primary" type="button" onclick="alert('Conecta aquí tu checkout o link de compra.')">
+            Comprar ahora
+          </button>
+          <a class="btn" href="#contacto">¿Dudas antes de comprar?</a>
+        </div>
+      </div>
+
+      <div class="gallery" aria-label="Galería de producto">
+        <figure class="shot" data-full="./assets/img/mega-10.png">
+          <picture>
+            <source srcset="./assets/img/mega-10.webp" type="image/webp">
+            <img src="./assets/img/mega-10.png" alt="Producto vista frontal" loading="lazy">
+          </picture>
+        </figure>
+
+        <figure class="shot" data-full="./assets/img/mega-1.png">
+          <picture>
+            <source srcset="./assets/img/mega-1.webp" type="image/webp">
+            <img src="./assets/img/mega-1.png" alt="Producto vista superior" loading="lazy">
+          </picture>
+        </figure>
+
+        <figure class="shot" data-full="./assets/img/mega-3.png">
+          <picture>
+            <source srcset="./assets/img/mega-3.webp" type="image/webp">
+            <img src="./assets/img/mega-3.png" alt="Producto en perspectiva" loading="lazy">
+          </picture>
+        </figure>
+
+        <figure class="shot" data-full="./assets/img/mega-6.png">
+          <picture>
+            <source srcset="./assets/img/mega-6.webp" type="image/webp">
+            <img src="./assets/img/mega-6.png" alt="Producto vista superior frontal" loading="lazy">
+          </picture>
+        </figure>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <img src="MEGA 1.png" alt="Producto" />
-    <img src="MEGA 3.png" alt="Producto" />
-    <img src="MEGA 6.png" alt="Producto" />
-  </section>
+  <main class="container">
+    <section id="beneficios">
+      <div class="section-title">
+        <h2>¿Por qué elegirlo?</h2>
+        <div class="hint">Diseñado para integrarse en un hogar premium</div>
+      </div>
 
-  <section class="features">
-    <h2>¿Por qué elegirlo?</h2>
-    <ul>
-      <li>✔ Elimina la cal de tuberías y electrodomésticos sin sal ni filtros</li>
-      <li>✔ Protege toda la instalación con doble bobina: agua fría y caliente</li>
-      <li>✔ Funciona incluso en aguas muy duras (>180 mg/L CaCO3)</li>
-      <li>✔ Tecnología SmartFlow: se autoajusta según dureza y tubería</li>
-      <li>✔ Instalación rápida DIY (hazlo tú mismo) en menos de 10 minutos</li>
-      <li>✔ Pantalla táctil 2.4” para configuración simple</li>
-      <li>✔ Consumo energético mínimo: menos de 1 W</li>
-    </ul>
-  </section>
+      <div class="grid-2">
+        <div class="card">
+          <ul>
+            <li><strong>Protección total</strong> de la instalación (tuberías, caldera, electrodomésticos y grifería).</li>
+            <li><strong>Doble bobina</strong> para actuar sobre agua fría y caliente.</li>
+            <li><strong>Autoajuste</strong> de señal (SmartFlow) según condiciones de dureza y tubería.</li>
+            <li><strong>Cero sal, cero químicos</strong>. No altera el sabor del agua.</li>
+            <li><strong>Consumo mínimo</strong> (&lt; 1 W) y mantenimiento sencillo.</li>
+          </ul>
+        </div>
 
-  <section class="install">
-    <h2>Instalación en 4 pasos</h2>
-    <ol>
-      <li>1. Localiza la tubería de entrada general</li>
-      <li>2. Enrolla la primera bobina (12 vueltas)</li>
-      <li>3. Enrolla la segunda bobina dejando separación</li>
-      <li>4. Conecta el adaptador. ¡Listo!</li>
-    </ol>
-  </section>
+        <div class="card">
+          <div class="kpis">
+            <div class="kpi">
+              <strong>&lt; 1 W</strong>
+              <span>Consumo máximo</span>
+            </div>
+            <div class="kpi">
+              <strong>~10 min</strong>
+              <span>Instalación DIY</span>
+            </div>
+            <div class="kpi">
+              <strong>Hasta aguas muy duras</strong>
+              <span>Eficaz en niveles altos de dureza</span>
+            </div>
+          </div>
+          <p class="hint" style="margin-top:12px;">
+            Datos técnicos y claims alineados con el manual y materiales comerciales. 
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <section class="price-section">
-    <h2>Precio de lanzamiento</h2>
-    <p class="price">3.995 €</p>
-    <button class="btn-buy">Comprar ahora</button>
-    <div class="payments">
-      <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" />
-      <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="MasterCard" />
-      <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal" />
-      <img src="https://img.icons8.com/fluency/48/bitcoin.png" alt="Bitcoin" />
+    <section id="instalacion">
+      <div class="section-title">
+        <h2>Instalación en 4 pasos</h2>
+        <div class="hint">Sin obra, sin cortar tubería</div>
+      </div>
+
+      <div class="card">
+        <ol style="margin:10px 0 0; color: var(--muted); line-height:1.6;">
+          <li>Localiza la tubería principal antes de la primera derivación.</li>
+          <li>Enrolla la bobina izquierda (12 vueltas apretadas).</li>
+          <li>Enrolla la bobina derecha dejando separación (≈ 3× el diámetro de la tubería).</li>
+          <li>Conecta el adaptador. Listo.</li>
+        </ol>
+        <p class="hint" style="margin-top:12px;">La instalación típica se completa en ~10 min. :contentReference[oaicite:1]{index=1}</p>
+      </div>
+    </section>
+
+    <section id="especificaciones">
+      <div class="section-title">
+        <h2>Especificaciones</h2>
+        <div class="hint">Enfoque UE y uso doméstico interior</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <ul>
+            <li>Alimentación: 230 V ~ 50 Hz (adaptador incluido)</li>
+            <li>Potencia máxima: &lt; 1 W</li>
+            <li>Protección: IP X4 (interiores secos)</li>
+            <li>Rangos de tubería: ½”, ¾”, 1”</li>
+            <li>Temperatura servicio: 0–45 °C</li>
+          </ul>
+          <p class="hint" style="margin-top:12px;">Resumen basado en el manual condensado. :contentReference[oaicite:2]{index=2}</p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px; font-size:16px;">Garantía y soporte</h3>
+          <ul>
+            <li>Garantía legal: 3 años (con factura)</li>
+            <li>Recomendación de revisión anual</li>
+            <li>Diseñado para durar, con autodiagnóstico</li>
+          </ul>
+          <p class="hint" style="margin-top:12px;">Detalles de garantía y mantenimiento. :contentReference[oaicite:3]{index=3}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="section-title">
+        <h2>¿Tienes dudas? Contáctanos</h2>
+        <div class="hint">Te respondemos rápido</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <form action="#" onsubmit="event.preventDefault(); alert('Conecta aquí tu backend o servicio de formularios.');">
+            <div class="row">
+              <input type="text" placeholder="Nombre completo" required />
+              <input type="email" placeholder="Correo electrónico" required />
+            </div>
+            <textarea placeholder="Tu mensaje" rows="5"></textarea>
+            <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+          </form>
+          <p class="hint" style="margin-top:10px;">
+            Si quieres, te lo conecto a Formspree / Netlify Forms (sin backend).
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px; font-size:16px;">WhatsApp</h3>
+          <p class="hint">Cambia el número por el vuestro en formato internacional.</p>
+          <a class="btn btn-primary" href="https://wa.me/34TU_NUMERO" target="_blank" rel="noopener">
+            Contactar por WhatsApp
+          </a>
+
+          <hr style="border:0; border-top:1px solid var(--stroke); margin:16px 0;">
+
+          <h3 style="margin:0 0 10px; font-size:16px;">Más fotos</h3>
+          <div class="gallery">
+            <figure class="shot" data-full="./assets/img/mega-7.png">
+              <picture>
+                <source srcset="./assets/img/mega-7.webp" type="image/webp">
+                <img src="./assets/img/mega-7.png" alt="Vista adicional 1" loading="lazy">
+              </picture>
+            </figure>
+            <figure class="shot" data-full="./assets/img/mega-8.png">
+              <picture>
+                <source srcset="./assets/img/mega-8.webp" type="image/webp">
+                <img src="./assets/img/mega-8.png" alt="Vista adicional 2" loading="lazy">
+              </picture>
+            </figure>
+            <figure class="shot" data-full="./assets/img/mega-9.png">
+              <picture>
+                <source srcset="./assets/img/mega-9.webp" type="image/webp">
+                <img src="./assets/img/mega-9.png" alt="Vista adicional 3" loading="lazy">
+              </picture>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container">
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center;">
+        <div>© <span id="year"></span> — Desincrustador Pro Premium 2.0</div>
+        <div class="hint">Hecho para GitHub Pages (HTML estático)</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-inner" role="dialog" aria-modal="true" aria-label="Vista ampliada">
+      <button class="lb-close" id="lbClose" type="button">Cerrar ✕</button>
+      <img id="lbImg" src="" alt="Imagen ampliada">
     </div>
-  </section>
+  </div>
 
-  <section class="contact-section">
-    <h2>¿Tienes dudas? Contáctanos</h2>
-    <form action="#">
-      <input type="text" placeholder="Nombre completo" required />
-      <input type="email" placeholder="Correo electrónico" required />
-      <textarea placeholder="Tu mensaje" rows="5"></textarea>
-      <button class="btn-buy">Enviar mensaje</button>
-    </form>
-    <a class="whatsapp-link" href="https://wa.me/tu_numero" target="_blank">Contáctanos por WhatsApp</a>
-  </section>
+  <script>
+    // Año footer
+    document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Lightbox básico
+    const lb = document.getElementById("lb");
+    const lbImg = document.getElementById("lbImg");
+    const lbClose = document.getElementById("lbClose");
+
+    function openLB(src){
+      lbImg.src = src;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeLB(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".shot").forEach(el => {
+      el.addEventListener("click", () => {
+        const full = el.getAttribute("data-full");
+        openLB(full);
+      });
+    });
+
+    lbClose.addEventListener("click", closeLB);
+    lb.addEventListener("click", (e) => { if(e.target === lb) closeLB(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeLB(); });
+  </script>
 </body>
 </html>
