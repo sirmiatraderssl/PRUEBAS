@@ -3,134 +3,788 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desincrustador Pro Premium 2.0</title>
+  <title>Tec.K2 Integral PRO</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Montserrat', sans-serif; margin: 0; background-color: #111; color: #fff; }
-    header { background: linear-gradient(145deg, #555, #222); padding: 2rem; text-align: center; }
-    header h1 { font-size: 2.8rem; color: #00ffc3; margin: 0; }
-    header p { font-size: 1.1rem; color: #ccc; margin: .8rem 0 0; max-width: 900px; margin-left:auto; margin-right:auto; }
-    .hero { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; background-color: #000; padding: 3rem 1rem; }
-    .hero img { width: 300px; border-radius: 20px; box-shadow: 0 0 20px #00ffc3; }
-    .features, .install, .price-section, .contact-section, footer { padding: 3rem 1rem; max-width: 900px; margin: auto; }
-    .features h2, .install h2, .price-section h2, .contact-section h2 { color: #00ffc3; border-bottom: 2px solid #00ffc3; padding-bottom: .5rem; margin-bottom: 1rem; }
-    .muted { color:#b9b9b9; font-size: .95rem; line-height: 1.45; }
-    .price { font-size: 2rem; color: #fff; margin-top: .75rem; }
-    .pill {
-      display:inline-block; margin-top: 1rem; padding: .35rem .65rem; border-radius: 999px;
-      background: rgba(0,255,195,.12); border: 1px solid rgba(0,255,195,.35); color:#c8fff3; font-size:.9rem;
+    :root{
+      --bg:#0b0d10;
+      --panel:#0f1318;
+      --panel2:#0c1015;
+      --text:#eef2f6;
+      --muted:#b8c0cc;
+      --line:rgba(255,255,255,.10);
+      --accent:#00ffc3;
+      --accent2:#00cfa3;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius2:24px;
     }
-    .btn {
-      background: #00ffc3; color: #000; padding: 1rem 1.6rem; border: none; border-radius: 10px;
-      font-size: 1.1rem; cursor: pointer; transition: 0.3s; text-decoration: none; display:inline-block;
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family:'Montserrat', sans-serif;
+      margin:0;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(0,255,195,.10), transparent 55%),
+                  radial-gradient(900px 600px at 85% 10%, rgba(0,255,195,.08), transparent 55%),
+                  var(--bg);
+      color:var(--text);
     }
-    .btn:hover { background: #00cfa3; }
-    form { display: flex; flex-direction: column; gap: 1rem; }
-    input, textarea { padding: .8rem; border: none; border-radius: 8px; font-size: 1rem; }
-    .whatsapp-link { display: inline-block; margin-top: 1rem; background: #25D366; color: #fff; padding: 0.8rem 1.2rem; border-radius: 8px; text-decoration: none; }
-    footer { padding-top: 1.5rem; padding-bottom: 2.5rem; }
-    footer a { color:#00ffc3; text-decoration:none; }
-    footer a:hover { text-decoration:underline; }
-    .legal-box {
-      background:#0b0b0b; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1rem 1.2rem;
-      margin-top: 1rem;
+
+    a{ color:inherit; }
+    .container{ max-width: 1100px; margin:0 auto; padding: 0 18px; }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: rgba(11,13,16,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .brand-badge{
+      width:38px; height:38px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(0,255,195,.20), rgba(0,255,195,.04));
+      border: 1px solid rgba(0,255,195,.30);
+      box-shadow: 0 0 22px rgba(0,255,195,.12);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:800;
+      color: var(--accent);
+    }
+    nav{
+      display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+      color: var(--muted);
+      font-weight:600;
+      font-size: .95rem;
+    }
+    nav a{ text-decoration:none; opacity:.9; }
+    nav a:hover{ opacity:1; color: var(--text); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      background: var(--accent);
+      color:#00140f;
+      border:none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight:800;
+      cursor:pointer;
+      text-decoration:none;
+      transition:.18s ease;
+      box-shadow: 0 10px 30px rgba(0,255,195,.18);
+      white-space:nowrap;
+    }
+    .btn:hover{ background: var(--accent2); transform: translateY(-1px); }
+    .btn.outline{
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(0,255,195,.35);
+      box-shadow:none;
+    }
+    .btn.outline:hover{ border-color: rgba(0,255,195,.6); }
+
+    /* Hero */
+    .hero{
+      padding: 34px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{
+      padding: 28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-left:before{
+      content:"";
+      position:absolute; inset:-120px -120px auto auto;
+      width: 280px; height:280px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,255,195,.18), transparent 60%);
+      filter: blur(2px);
+      transform: rotate(25deg);
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(0,255,195,.10);
+      border: 1px solid rgba(0,255,195,.25);
+      color: #c8fff3;
+      font-weight:700;
+      font-size: .92rem;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      letter-spacing:.2px;
+      line-height:1.08;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height:1.55;
+      margin:0 0 16px;
+      max-width: 58ch;
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .point{
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 12px 12px;
+      display:flex; gap:10px; align-items:flex-start;
+      color: var(--muted);
+      font-weight:600;
+      line-height:1.35;
+      font-size: .95rem;
+    }
+    .dot{
+      width:10px; height:10px; margin-top: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(0,255,195,.35);
+      flex: 0 0 auto;
+    }
+    .hero-cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 18px;
+    }
+    .micro{
+      margin-top: 10px;
+      color: rgba(184,192,204,.9);
+      font-size: .88rem;
+      line-height:1.45;
+    }
+
+    .hero-right{
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .hero-img{
+      position:relative;
+      aspect-ratio: 4 / 3;
+      width:100%;
+      overflow:hidden;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: #000;
+      box-shadow: var(--shadow);
+    }
+    .hero-img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+    }
+    .hero-img .label{
+      position:absolute;
+      left: 14px; bottom: 14px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      color: #eaf2f6;
+      font-weight:700;
+      font-size: .92rem;
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .section-title{
+      display:flex; align-items:end; justify-content:space-between;
+      gap:12px; margin: 0 0 14px;
+    }
+    h2{
+      margin:0;
+      font-size: 1.45rem;
+      letter-spacing:.2px;
+    }
+    .section-note{
+      color: var(--muted);
+      font-weight:600;
+      font-size: .95rem;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .tile{
+      padding: 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.09);
+      min-height: 122px;
+    }
+    .tile h3{
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+    .tile p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.55;
+      font-size: .96rem;
+      font-weight:600;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+    .box{
+      padding: 18px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .box p, .box li{
+      color: var(--muted);
+      line-height:1.55;
+      font-weight:600;
+      font-size: .96rem;
+    }
+    ul, ol{ margin: 10px 0 0 18px; }
+    li{ margin: 8px 0; }
+
+    .price-card{
+      padding: 18px;
+      border-radius: var(--radius2);
+      background: linear-gradient(145deg, rgba(0,255,195,.14), rgba(255,255,255,.02));
+      border: 1px solid rgba(0,255,195,.28);
+    }
+    .price-line{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .price-big{
+      font-size: 2.05rem;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .pill2{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px; border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #eaf2f6;
+      font-weight:800;
+      font-size: .92rem;
+      white-space:nowrap;
+    }
+    .disclaimer{
+      margin-top: 10px;
+      color: rgba(184,192,204,.92);
+      font-size: .9rem;
+      line-height:1.5;
+      font-weight:600;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 14px;
+    }
+    .gallery .img{
+      border-radius: var(--radius2);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background:#000;
+      box-shadow: var(--shadow);
+      aspect-ratio: 4/3;
+    }
+    .gallery .img.small{ aspect-ratio: 1/1; }
+    .gallery img{ width:100%; height:100%; object-fit: cover; display:block; }
+
+    /* FAQ */
+    details{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      padding: 12px 14px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color: var(--text);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin: 10px 0 0; color: var(--muted); font-weight:600; line-height:1.55; }
+
+    /* Contact */
+    form{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    input, textarea, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      font-weight:600;
+      font-size: 1rem;
+      outline:none;
+    }
+    textarea{ grid-column: 1 / -1; min-height: 120px; resize: vertical; }
+    .form-actions{
+      grid-column: 1 / -1;
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    }
+    .whatsapp{
+      background:#25D366; color:#062a12;
+      box-shadow: 0 10px 30px rgba(37,211,102,.16);
+    }
+    .whatsapp:hover{ filter: brightness(.96); }
+
+    footer{
+      margin-top: 22px;
+      padding: 22px 0 34px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-weight:600;
+      font-size: .92rem;
+    }
+    .footbox{
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.02);
+      padding: 14px;
+    }
+    .footlinks{ display:flex; gap:14px; flex-wrap:wrap; margin-top: 10px; }
+    .footlinks a{ color: var(--accent); text-decoration:none; }
+    .footlinks a:hover{ text-decoration:underline; }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .hero-points{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .split{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      form{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Desincrustador Pro Premium 2.0</h1>
-    <p>
-      Tecnología de impulsos electromagnéticos para ayudar a reducir los efectos de la cal en instalaciones domésticas
-      (tuberías, grifería y electrodomésticos), sin sales ni químicos.
-    </p>
-    <span class="pill">Visita informativa sin compromiso</span>
+
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-badge">K2</div>
+          <div>
+            <div style="font-size:1rem; font-weight:800; line-height:1.05;">Tec.K2 Integral PRO</div>
+            <div style="font-size:.86rem; color:var(--muted); font-weight:700;">Sistema integral anti-cal (impulsos electromagnéticos)</div>
+          </div>
+        </div>
+
+        <nav>
+          <a href="#beneficios">Beneficios</a>
+          <a href="#incluye">Qué incluye</a>
+          <a href="#tecnologia">Tecnología</a>
+          <a href="#precio">Precio</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn outline" href="#precio">Ver PVP</a>
+          <a class="btn" href="#contacto">Solicitar visita</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="card hero-left">
+          <span class="kicker">Visita informativa sin compromiso · Instalación incluida</span>
+
+          <h1>Tec.K2 Integral PRO</h1>
+
+          <p class="sub">
+            Sistema integral de impulsos electromagnéticos diseñado para <strong>ayudar a reducir los efectos asociados a la acumulación de cal</strong>
+            en instalaciones domésticas (tuberías, grifería y electrodomésticos), sin sales ni químicos.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn" href="#contacto">Solicitar oferta / Visita técnica</a>
+            <a class="btn outline" href="#tecnologia">Ver tecnología</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="point"><span class="dot"></span>Instalación profesional incluida en la visita</div>
+            <div class="point"><span class="dot"></span>Revisión anual recomendada (bobinados y cableado)</div>
+            <div class="point"><span class="dot"></span>Consumo energético muy bajo (típicamente &lt; 1 W)</div>
+            <div class="point"><span class="dot"></span>Configuración y control desde pantalla táctil</div>
+          </div>
+
+          <p class="micro">
+            *Los resultados dependen de factores como dureza del agua, material/diámetro de tubería, caudal y hábitos de uso.
+            Este producto no sustituye tratamientos exigidos por normativa en instalaciones específicas.
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-img">
+            <!-- Cambia solo el archivo en /assets/ para actualizar la imagen -->
+            <img src="assets/tec-k2-hero.jpg" alt="Tec.K2 Integral PRO en cocina" />
+            <div class="label">Imagen de producto (provisional)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <img src="MEGA 1.png" alt="Producto" />
-    <img src="MEGA 3.png" alt="Producto" />
-    <img src="MEGA 6.png" alt="Producto" />
+  <!-- BENEFICIOS -->
+  <section id="beneficios">
+    <div class="container">
+      <div class="section-title">
+        <h2>Beneficios en el uso diario</h2>
+        <div class="section-note">Enfoque preventivo · Hogar y mantenimiento</div>
+      </div>
+
+      <div class="grid3">
+        <div class="tile">
+          <h3>Protección de la instalación</h3>
+          <p>Ayuda a reducir la acumulación de cal asociada al uso cotidiano en tuberías y puntos de consumo.</p>
+        </div>
+        <div class="tile">
+          <h3>Electrodomésticos</h3>
+          <p>Puede contribuir a disminuir incidencias vinculadas a la cal en lavadora, lavavajillas, termo y grifería.</p>
+        </div>
+        <div class="tile">
+          <h3>Sin consumibles</h3>
+          <p>No requiere sales ni cartuchos. Sistema pensado para funcionar sin consumibles habituales.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="features">
-    <h2>¿Por qué elegirlo?</h2>
-    <ul>
-      <li>✔ Ayuda a reducir la acumulación de cal asociada al uso diario (sin sal ni filtros consumibles)</li>
-      <li>✔ Cobertura de instalación: doble bobina (agua fría y caliente) según configuración</li>
-      <li>✔ Diseñado para trabajar en un rango amplio de dureza del agua (los resultados pueden variar)</li>
-      <li>✔ Ajuste automático de funcionamiento (según configuración y parámetros de uso)</li>
-      <li>✔ Instalación sencilla en vivienda (tiempo estimado: ~10–15 min según acceso)</li>
-      <li>✔ Pantalla táctil 2.4” para configuración</li>
-      <li>✔ Consumo energético muy bajo (típicamente < 1 W)</li>
-    </ul>
-    <p class="muted">
-      Nota: El rendimiento depende del tipo de instalación, material/diámetro de tubería, dureza del agua, caudal y hábitos de uso.
-      Este producto no sustituye tratamientos obligatorios por normativa en instalaciones específicas.
-    </p>
+  <!-- QUE INCLUYE -->
+  <section id="incluye">
+    <div class="container">
+      <div class="section-title">
+        <h2>Qué incluye</h2>
+        <div class="section-note">Servicio completo · Sin sorpresas</div>
+      </div>
+
+      <div class="split">
+        <div class="box">
+          <h3 style="margin:0 0 8px;">Incluido en la visita</h3>
+          <ul>
+            <li>Instalación profesional del sistema (según viabilidad y acceso).</li>
+            <li>Configuración inicial y verificación de funcionamiento.</li>
+            <li>Recomendaciones de uso y mantenimiento para tu caso.</li>
+            <li>Atención técnica y soporte post-instalación.</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3 style="margin:0 0 8px;">Mantenimiento recomendado</h3>
+          <ul>
+            <li>Una visita anual de revisión de bobinados y cableado (recomendación técnica).</li>
+            <li>Comprobación de fijaciones y estado general del conjunto.</li>
+            <li>Verificación de parámetros y ajustes si procede.</li>
+          </ul>
+          <p class="section-note" style="margin-top:10px;">
+            Objetivo: mantener el sistema en condiciones óptimas y detectar desgaste por uso o manipulación.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="install">
-    <h2>Instalación en 4 pasos</h2>
-    <ol>
-      <li>Localiza la tubería de entrada general (y/o la línea de agua caliente)</li>
-      <li>Enrolla la primera bobina (vueltas según manual)</li>
-      <li>Enrolla la segunda bobina dejando separación indicada</li>
-      <li>Conecta el adaptador y configura en pantalla</li>
-    </ol>
-    <p class="muted">Para un resultado óptimo, recomendamos que la instalación la revise un técnico si hay dudas de acceso o compatibilidad.</p>
-  </section>
+  <!-- GALERIA -->
+  <section id="galeria">
+    <div class="container">
+      <div class="section-title">
+        <h2>Galería</h2>
+        <div class="section-note">Imágenes reales / provisionales</div>
+      </div>
 
-  <section class="price-section" id="precio">
-    <h2>Precio orientativo</h2>
+      <div class="gallery">
+        <div class="img">
+          <img src="assets/tec-k2-hero.jpg" alt="Tec.K2 Integral PRO - vista principal" />
+        </div>
+        <div class="img small">
+          <!-- Cuando me pases la foto del equipo en caja, la pones aquí con el mismo nombre -->
+          <img src="assets/tec-k2-box.jpg" alt="Tec.K2 Integral PRO - en caja (pendiente)" />
+        </div>
+      </div>
 
-    <!-- Opción "Culligan-like" legal: PVP recomendado (no "lanzamiento") -->
-    <p class="price"><strong>PVP recomendado:</strong> 3.995 €</p>
-    <p class="muted">
-      El precio mostrado es orientativo/recomendado y puede variar en función de la instalación, configuración,
-      condiciones comerciales y campañas vigentes. El precio final y la oferta se determinan tras revisar el caso concreto.
-    </p>
-
-    <div class="legal-box">
-      <p class="muted" style="margin:0;">
-        Importante: Este sitio web informa sobre el producto. Si solicitas una oferta, el presupuesto final se emitirá por el distribuidor/comercializador,
-        quien define las condiciones de venta al consumidor.
+      <p class="micro">
+        Para actualizar imágenes: sustituye el archivo en <strong>/assets/</strong> manteniendo el mismo nombre
+        (<strong>tec-k2-hero.jpg</strong> o <strong>tec-k2-box.jpg</strong>). No hace falta tocar el código.
       </p>
     </div>
-
-    <!-- CTA correcto (no "comprar" si el flujo real es comercial/visita) -->
-    <a class="btn" href="#contacto">Solicitar oferta / Visita</a>
   </section>
 
-  <section class="contact-section" id="contacto">
-    <h2>¿Tienes dudas? Contáctanos</h2>
-    <form action="#" method="post">
-      <input type="text" name="nombre" placeholder="Nombre completo" required />
-      <input type="email" name="email" placeholder="Correo electrónico" required />
-      <textarea name="mensaje" placeholder="Tu mensaje" rows="5"></textarea>
-      <button class="btn" type="submit">Enviar</button>
-    </form>
+  <!-- TECNOLOGIA -->
+  <section id="tecnologia">
+    <div class="container">
+      <div class="section-title">
+        <h2>Tecnología y diseño</h2>
+        <div class="section-note">Enfoque técnico · Copy premium sin promesas absolutas</div>
+      </div>
 
-    <!-- Sustituye tu_numero por el número real en formato internacional sin + -->
-    <a class="whatsapp-link" href="https://wa.me/tu_numero" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+      <div class="split">
+        <div class="box">
+          <h3 style="margin:0 0 8px;">Arquitectura de control</h3>
+          <p>
+            El sistema integra una <strong>pantalla táctil</strong> y un <strong>microcontrolador</strong> para la configuración y supervisión.
+            Diseñado para facilitar ajustes y una operación estable en el uso doméstico.
+          </p>
+          <ul>
+            <li>Interfaz táctil para configuración.</li>
+            <li>Parámetros ajustables según instalación.</li>
+            <li>Consumo energético muy bajo (típicamente &lt; 1 W).</li>
+          </ul>
+        </div>
 
-    <p class="muted" style="margin-top:1rem;">
-      Si lo prefieres, indícanos tu localidad y tipo de vivienda (piso/casa) para orientarte con mayor precisión.
-    </p>
+        <div class="box">
+          <h3 style="margin:0 0 8px;">Bobinados y conexiones</h3>
+          <p>
+            Configuración con bobinados y conectores diseñados para un montaje consistente y una revisión sencilla.
+            El objetivo es una instalación limpia, duradera y con mantenimiento predecible.
+          </p>
+          <ul>
+            <li>Montaje guiado y revisión anual recomendada.</li>
+            <li>Conectores preparados para inspección técnica.</li>
+            <li>Configuración orientada a estabilidad y seguridad.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top:14px;">
+        <h3 style="margin:0 0 8px;">Propiedad industrial</h3>
+        <p>
+          El sistema incorpora desarrollos protegidos mediante derechos de propiedad industrial (p. ej., modelos de utilidad),
+          vinculados a elementos de arquitectura electrónica y componentes de conexión/instalación.
+          <br><br>
+          <span class="section-note">Nota:</span> si quieres, aquí añadimos los números de registro y el estado (concedido/en trámite) para máxima solidez.
+        </p>
+      </div>
+
+      <p class="micro">
+        *El rendimiento puede variar según dureza del agua, tipo de tubería, caudal y condiciones de instalación.
+      </p>
+    </div>
   </section>
 
+  <!-- INSTALACION -->
+  <section id="instalacion">
+    <div class="container">
+      <div class="section-title">
+        <h2>Instalación</h2>
+        <div class="section-note">Incluida · Realizada por técnico</div>
+      </div>
+
+      <div class="split">
+        <div class="box">
+          <h3 style="margin:0 0 8px;">Proceso típico</h3>
+          <ol>
+            <li>Evaluación rápida del punto de instalación y acceso.</li>
+            <li>Montaje de bobinados y fijación según criterios técnicos.</li>
+            <li>Conexión del equipo y configuración inicial.</li>
+            <li>Comprobación de funcionamiento y recomendaciones.</li>
+          </ol>
+        </div>
+        <div class="box">
+          <h3 style="margin:0 0 8px;">Requisitos</h3>
+          <ul>
+            <li>Acceso a la tubería en el punto acordado.</li>
+            <li>Espacio para fijación segura del equipo.</li>
+            <li>Alimentación eléctrica disponible (según instalación).</li>
+          </ul>
+          <p class="micro" style="margin-top:10px;">
+            Si el acceso es complejo o hay particularidades (cuartos técnicos, comunidades, etc.), se ajusta el plan de instalación.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIO -->
+  <section id="precio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Precio</h2>
+        <div class="section-note">Tarifa pública · Sin descuentos teatrales</div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-line">
+          <div>
+            <div class="section-note" style="margin-bottom:6px;">PVP recomendado</div>
+            <div class="price-big">4.200 €</div>
+          </div>
+          <div class="pill2">Instalación incluida</div>
+        </div>
+
+        <div class="disclaimer">
+          El precio mostrado es <strong>recomendado/orientativo</strong> y puede variar en función de la instalación,
+          configuración técnica, condiciones comerciales y campañas vigentes. El precio final se determina tras valorar el caso concreto.
+          <br><br>
+          Este sitio web informa sobre el producto. El presupuesto final y las condiciones de venta serán definidos por el distribuidor/comercializador.
+        </div>
+
+        <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn" href="#contacto">Solicitar oferta / Visita técnica</a>
+          <a class="btn outline" href="#faq">Resolver dudas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Preguntas frecuentes</h2>
+        <div class="section-note">Claridad · Expectativas realistas</div>
+      </div>
+
+      <details>
+        <summary>¿Esto “elimina” la cal?</summary>
+        <p>
+          Evitamos promesas absolutas: el sistema está diseñado para <strong>ayudar a reducir los efectos asociados a la cal</strong> en la instalación.
+          El resultado depende de dureza del agua, tipo de tubería, caudal y uso.
+        </p>
+      </details>
+
+      <details>
+        <summary>¿Qué incluye exactamente la visita?</summary>
+        <p>
+          Instalación profesional (si el acceso lo permite), configuración inicial, comprobación de funcionamiento y recomendaciones.
+        </p>
+      </details>
+
+      <details>
+        <summary>¿Hay mantenimiento?</summary>
+        <p>
+          Se recomienda una <strong>revisión anual</strong> para comprobar bobinados y cableado. Es una medida preventiva para mantener el sistema en condiciones óptimas.
+        </p>
+      </details>
+
+      <details>
+        <summary>¿Puedo obtener un precio cerrado sin visita?</summary>
+        <p>
+          Podemos orientarte, pero el precio final se confirma tras valorar el punto de instalación y la configuración adecuada.
+        </p>
+      </details>
+
+      <details>
+        <summary>¿Sirve para cualquier vivienda?</summary>
+        <p>
+          Suele ser compatible con instalaciones domésticas, pero hay casos (acceso complicado, instalaciones particulares, etc.) donde se requiere valoración previa.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-title">
+        <h2>Solicitar visita / Oferta</h2>
+        <div class="section-note">Respuesta rápida · Sin compromiso</div>
+      </div>
+
+      <div class="box">
+        <p style="margin:0; color:var(--muted); font-weight:600; line-height:1.55;">
+          Déjanos tus datos y un técnico te contactará para confirmar disponibilidad, validar el punto de instalación y preparar una oferta ajustada.
+        </p>
+
+        <form action="#" method="post">
+          <input type="text" name="nombre" placeholder="Nombre y apellidos" required />
+          <input type="tel" name="telefono" placeholder="Teléfono" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <select name="tipo_vivienda" required>
+            <option value="" disabled selected>Tipo de vivienda</option>
+            <option value="piso">Piso</option>
+            <option value="casa">Casa</option>
+            <option value="otro">Otro</option>
+          </select>
+          <textarea name="mensaje" placeholder="Cuéntanos tu caso (localidad, dureza aprox si la conoces, acceso a tubería, etc.)"></textarea>
+
+          <div class="form-actions">
+            <button class="btn" type="submit">Enviar solicitud</button>
+            <!-- Sustituye tu_numero por el número real en formato internacional sin + -->
+            <a class="btn whatsapp" href="https://wa.me/tu_numero" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn outline" href="#precio">Volver a precio</a>
+          </div>
+        </form>
+
+        <p class="micro" style="margin-bottom:0;">
+          Protección de datos: incluiremos los textos de privacidad/cookies en los enlaces del pie (y el titular debe ser la Empresa B).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="legal-box">
-      <p class="muted" style="margin:0;">
-        <strong>Titular del sitio / comercialización:</strong> EMPRESA B (razón social, CIF, dirección).<br>
-        <strong>Fabricación:</strong> SIRMIA TRADERS SL (datos legales si queréis ponerlos como fabricante).<br><br>
-        <a href="#aviso-legal">Aviso legal</a> · <a href="#privacidad">Privacidad</a> · <a href="#cookies">Cookies</a>
-      </p>
+    <div class="container">
+      <div class="footbox">
+        <div>
+          <strong>Titular del sitio / comercialización:</strong> EMPRESA B (razón social, CIF, dirección) <br>
+          <strong>Fabricación:</strong> SIRMIA TRADERS SL (si queréis mencionarlo como fabricante)
+        </div>
+        <div class="footlinks">
+          <a href="#aviso-legal">Aviso legal</a>
+          <a href="#privacidad">Privacidad</a>
+          <a href="#cookies">Cookies</a>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;">
+        © <span id="y"></span> EMPRESA B. Todos los derechos reservados.
+      </div>
     </div>
-    <p class="muted" style="margin-top:1rem;">
-      © <span id="y"></span> EMPRESA B. Todos los derechos reservados.
-    </p>
   </footer>
 
   <script>
