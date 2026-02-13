@@ -6,97 +6,46 @@
   <title>Desincrustador Pro Premium 2.0</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      background-color: #111;
-      color: #fff;
+    body { font-family: 'Montserrat', sans-serif; margin: 0; background-color: #111; color: #fff; }
+    header { background: linear-gradient(145deg, #555, #222); padding: 2rem; text-align: center; }
+    header h1 { font-size: 2.8rem; color: #00ffc3; margin: 0; }
+    header p { font-size: 1.1rem; color: #ccc; margin: .8rem 0 0; max-width: 900px; margin-left:auto; margin-right:auto; }
+    .hero { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; background-color: #000; padding: 3rem 1rem; }
+    .hero img { width: 300px; border-radius: 20px; box-shadow: 0 0 20px #00ffc3; }
+    .features, .install, .price-section, .contact-section, footer { padding: 3rem 1rem; max-width: 900px; margin: auto; }
+    .features h2, .install h2, .price-section h2, .contact-section h2 { color: #00ffc3; border-bottom: 2px solid #00ffc3; padding-bottom: .5rem; margin-bottom: 1rem; }
+    .muted { color:#b9b9b9; font-size: .95rem; line-height: 1.45; }
+    .price { font-size: 2rem; color: #fff; margin-top: .75rem; }
+    .pill {
+      display:inline-block; margin-top: 1rem; padding: .35rem .65rem; border-radius: 999px;
+      background: rgba(0,255,195,.12); border: 1px solid rgba(0,255,195,.35); color:#c8fff3; font-size:.9rem;
     }
-    header {
-      background: linear-gradient(145deg, #555, #222);
-      padding: 2rem;
-      text-align: center;
+    .btn {
+      background: #00ffc3; color: #000; padding: 1rem 1.6rem; border: none; border-radius: 10px;
+      font-size: 1.1rem; cursor: pointer; transition: 0.3s; text-decoration: none; display:inline-block;
     }
-    header h1 {
-      font-size: 2.8rem;
-      color: #00ffc3;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    .hero {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      background-color: #000;
-      padding: 3rem 1rem;
-    }
-    .hero img {
-      width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #00ffc3;
-    }
-    .features, .install, .price-section, .contact-section {
-      padding: 3rem 1rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .features h2, .install h2, .price-section h2, .contact-section h2 {
-      color: #00ffc3;
-      border-bottom: 2px solid #00ffc3;
-      padding-bottom: .5rem;
-      margin-bottom: 1rem;
-    }
-    .price {
-      font-size: 2rem;
-      color: #fff;
+    .btn:hover { background: #00cfa3; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    input, textarea { padding: .8rem; border: none; border-radius: 8px; font-size: 1rem; }
+    .whatsapp-link { display: inline-block; margin-top: 1rem; background: #25D366; color: #fff; padding: 0.8rem 1.2rem; border-radius: 8px; text-decoration: none; }
+    footer { padding-top: 1.5rem; padding-bottom: 2.5rem; }
+    footer a { color:#00ffc3; text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+    .legal-box {
+      background:#0b0b0b; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1rem 1.2rem;
       margin-top: 1rem;
-    }
-    .btn-buy {
-      background: #00ffc3;
-      color: #000;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn-buy:hover {
-      background: #00cfa3;
-    }
-    .payments img {
-      height: 40px;
-      margin: 0.5rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    input, textarea {
-      padding: .8rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    .whatsapp-link {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #25D366;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Desincrustador Pro Premium 2.0</h1>
-    <p>Elimina la cal sin químicos. Protege tu hogar con tecnología de impulsos electromagnéticos.</p>
+    <p>
+      Tecnología de impulsos electromagnéticos para ayudar a reducir los efectos de la cal en instalaciones domésticas
+      (tuberías, grifería y electrodomésticos), sin sales ni químicos.
+    </p>
+    <span class="pill">Visita informativa sin compromiso</span>
   </header>
 
   <section class="hero">
@@ -108,48 +57,35 @@
   <section class="features">
     <h2>¿Por qué elegirlo?</h2>
     <ul>
-      <li>✔ Elimina la cal de tuberías y electrodomésticos sin sal ni filtros</li>
-      <li>✔ Protege toda la instalación con doble bobina: agua fría y caliente</li>
-      <li>✔ Funciona incluso en aguas muy duras (>180 mg/L CaCO3)</li>
-      <li>✔ Tecnología SmartFlow: se autoajusta según dureza y tubería</li>
-      <li>✔ Instalación rápida DIY (hazlo tú mismo) en menos de 10 minutos</li>
-      <li>✔ Pantalla táctil 2.4” para configuración simple</li>
-      <li>✔ Consumo energético mínimo: menos de 1 W</li>
+      <li>✔ Ayuda a reducir la acumulación de cal asociada al uso diario (sin sal ni filtros consumibles)</li>
+      <li>✔ Cobertura de instalación: doble bobina (agua fría y caliente) según configuración</li>
+      <li>✔ Diseñado para trabajar en un rango amplio de dureza del agua (los resultados pueden variar)</li>
+      <li>✔ Ajuste automático de funcionamiento (según configuración y parámetros de uso)</li>
+      <li>✔ Instalación sencilla en vivienda (tiempo estimado: ~10–15 min según acceso)</li>
+      <li>✔ Pantalla táctil 2.4” para configuración</li>
+      <li>✔ Consumo energético muy bajo (típicamente < 1 W)</li>
     </ul>
+    <p class="muted">
+      Nota: El rendimiento depende del tipo de instalación, material/diámetro de tubería, dureza del agua, caudal y hábitos de uso.
+      Este producto no sustituye tratamientos obligatorios por normativa en instalaciones específicas.
+    </p>
   </section>
 
   <section class="install">
     <h2>Instalación en 4 pasos</h2>
     <ol>
-      <li>1. Localiza la tubería de entrada general</li>
-      <li>2. Enrolla la primera bobina (12 vueltas)</li>
-      <li>3. Enrolla la segunda bobina dejando separación</li>
-      <li>4. Conecta el adaptador. ¡Listo!</li>
+      <li>Localiza la tubería de entrada general (y/o la línea de agua caliente)</li>
+      <li>Enrolla la primera bobina (vueltas según manual)</li>
+      <li>Enrolla la segunda bobina dejando separación indicada</li>
+      <li>Conecta el adaptador y configura en pantalla</li>
     </ol>
+    <p class="muted">Para un resultado óptimo, recomendamos que la instalación la revise un técnico si hay dudas de acceso o compatibilidad.</p>
   </section>
 
-  <section class="price-section">
-    <h2>Precio de lanzamiento</h2>
-    <p class="price">3.995 €</p>
-    <button class="btn-buy">Comprar ahora</button>
-    <div class="payments">
-      <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" />
-      <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="MasterCard" />
-      <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal" />
-      <img src="https://img.icons8.com/fluency/48/bitcoin.png" alt="Bitcoin" />
-    </div>
-  </section>
+  <section class="price-section" id="precio">
+    <h2>Precio orientativo</h2>
 
-  <section class="contact-section">
-    <h2>¿Tienes dudas? Contáctanos</h2>
-    <form action="#">
-      <input type="text" placeholder="Nombre completo" required />
-      <input type="email" placeholder="Correo electrónico" required />
-      <textarea placeholder="Tu mensaje" rows="5"></textarea>
-      <button class="btn-buy">Enviar mensaje</button>
-    </form>
-    <a class="whatsapp-link" href="https://wa.me/tu_numero" target="_blank">Contáctanos por WhatsApp</a>
-  </section>
-
-</body>
-</html>
+    <!-- Opción "Culligan-like" legal: PVP recomendado (no "lanzamiento") -->
+    <p class="price"><strong>PVP recomendado:</strong> 3.995 €</p>
+    <p class="muted">
+      El precio mostrado es orientativo/recomendado y puede variar e
