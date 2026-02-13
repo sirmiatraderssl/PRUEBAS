@@ -88,4 +88,53 @@
     <!-- Opción "Culligan-like" legal: PVP recomendado (no "lanzamiento") -->
     <p class="price"><strong>PVP recomendado:</strong> 3.995 €</p>
     <p class="muted">
-      El precio mostrado es orientativo/recomendado y puede variar e
+      El precio mostrado es orientativo/recomendado y puede variar en función de la instalación, configuración,
+      condiciones comerciales y campañas vigentes. El precio final y la oferta se determinan tras revisar el caso concreto.
+    </p>
+
+    <div class="legal-box">
+      <p class="muted" style="margin:0;">
+        Importante: Este sitio web informa sobre el producto. Si solicitas una oferta, el presupuesto final se emitirá por el distribuidor/comercializador,
+        quien define las condiciones de venta al consumidor.
+      </p>
+    </div>
+
+    <!-- CTA correcto (no "comprar" si el flujo real es comercial/visita) -->
+    <a class="btn" href="#contacto">Solicitar oferta / Visita</a>
+  </section>
+
+  <section class="contact-section" id="contacto">
+    <h2>¿Tienes dudas? Contáctanos</h2>
+    <form action="#" method="post">
+      <input type="text" name="nombre" placeholder="Nombre completo" required />
+      <input type="email" name="email" placeholder="Correo electrónico" required />
+      <textarea name="mensaje" placeholder="Tu mensaje" rows="5"></textarea>
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+
+    <!-- Sustituye tu_numero por el número real en formato internacional sin + -->
+    <a class="whatsapp-link" href="https://wa.me/tu_numero" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+
+    <p class="muted" style="margin-top:1rem;">
+      Si lo prefieres, indícanos tu localidad y tipo de vivienda (piso/casa) para orientarte con mayor precisión.
+    </p>
+  </section>
+
+  <footer>
+    <div class="legal-box">
+      <p class="muted" style="margin:0;">
+        <strong>Titular del sitio / comercialización:</strong> EMPRESA B (razón social, CIF, dirección).<br>
+        <strong>Fabricación:</strong> SIRMIA TRADERS SL (datos legales si queréis ponerlos como fabricante).<br><br>
+        <a href="#aviso-legal">Aviso legal</a> · <a href="#privacidad">Privacidad</a> · <a href="#cookies">Cookies</a>
+      </p>
+    </div>
+    <p class="muted" style="margin-top:1rem;">
+      © <span id="y"></span> EMPRESA B. Todos los derechos reservados.
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
