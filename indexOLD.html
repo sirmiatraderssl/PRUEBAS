@@ -4,14 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tec.K2 Integral PRO</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#0b0d10;
-      --panel:#0f1318;
-      --panel2:#0c1015;
       --text:#eef2f6;
       --muted:#b8c0cc;
       --line:rgba(255,255,255,.10);
@@ -21,7 +18,6 @@
       --radius:18px;
       --radius2:24px;
     }
-
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
@@ -32,11 +28,9 @@
                   var(--bg);
       color:var(--text);
     }
-
     a{ color:inherit; }
     .container{ max-width: 1100px; margin:0 auto; padding: 0 18px; }
 
-    /* Top bar */
     .topbar{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(12px);
@@ -96,9 +90,7 @@
     .btn.outline:hover{ border-color: rgba(0,255,195,.6); }
 
     /* Hero */
-    .hero{
-      padding: 34px 0 22px;
-    }
+    .hero{ padding: 34px 0 22px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -121,7 +113,6 @@
       position:absolute; inset:-120px -120px auto auto;
       width: 280px; height:280px;
       background: radial-gradient(circle at 30% 30%, rgba(0,255,195,.18), transparent 60%);
-      filter: blur(2px);
       transform: rotate(25deg);
     }
     .kicker{
@@ -137,7 +128,6 @@
     h1{
       margin: 14px 0 10px;
       font-size: clamp(1.9rem, 3vw, 2.7rem);
-      letter-spacing:.2px;
       line-height:1.08;
     }
     .sub{
@@ -146,6 +136,10 @@
       line-height:1.55;
       margin:0 0 16px;
       max-width: 58ch;
+    }
+    .hero-cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 18px;
     }
     .hero-points{
       display:grid;
@@ -171,10 +165,6 @@
       box-shadow: 0 0 16px rgba(0,255,195,.35);
       flex: 0 0 auto;
     }
-    .hero-cta{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top: 18px;
-    }
     .micro{
       margin-top: 10px;
       color: rgba(184,192,204,.9);
@@ -182,39 +172,22 @@
       line-height:1.45;
     }
 
-    .hero-right{
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
     .hero-img{
       position:relative;
-      aspect-ratio: 4 / 3;
       width:100%;
       overflow:hidden;
       border-radius: var(--radius2);
       border: 1px solid var(--line);
       background: #000;
       box-shadow: var(--shadow);
+      height: 100%;
+      min-height: 360px;
     }
     .hero-img img{
       width:100%;
       height:100%;
       object-fit: cover;
       display:block;
-      transform: scale(1.02);
-    }
-    .hero-img .label{
-      position:absolute;
-      left: 14px; bottom: 14px;
-      padding: 8px 10px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.55);
-      border: 1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(8px);
-      color: #eaf2f6;
-      font-weight:700;
-      font-size: .92rem;
     }
 
     /* Sections */
@@ -223,11 +196,7 @@
       display:flex; align-items:end; justify-content:space-between;
       gap:12px; margin: 0 0 14px;
     }
-    h2{
-      margin:0;
-      font-size: 1.45rem;
-      letter-spacing:.2px;
-    }
+    h2{ margin:0; font-size: 1.45rem; }
     .section-note{
       color: var(--muted);
       font-weight:600;
@@ -246,11 +215,7 @@
       border: 1px solid rgba(255,255,255,.09);
       min-height: 122px;
     }
-    .tile h3{
-      margin: 0 0 8px;
-      font-size: 1.02rem;
-      color: var(--text);
-    }
+    .tile h3{ margin: 0 0 8px; font-size: 1.02rem; }
     .tile p{
       margin:0;
       color: var(--muted);
@@ -271,46 +236,9 @@
       background: rgba(255,255,255,.02);
       border: 1px solid rgba(255,255,255,.08);
     }
-    .box p, .box li{
-      color: var(--muted);
-      line-height:1.55;
-      font-weight:600;
-      font-size: .96rem;
-    }
+    .box p, .box li{ color: var(--muted); line-height:1.55; font-weight:600; font-size: .96rem; }
     ul, ol{ margin: 10px 0 0 18px; }
     li{ margin: 8px 0; }
-
-    .price-card{
-      padding: 18px;
-      border-radius: var(--radius2);
-      background: linear-gradient(145deg, rgba(0,255,195,.14), rgba(255,255,255,.02));
-      border: 1px solid rgba(0,255,195,.28);
-    }
-    .price-line{
-      display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    .price-big{
-      font-size: 2.05rem;
-      font-weight:800;
-      letter-spacing:.2px;
-    }
-    .pill2{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 7px 10px; border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      color: #eaf2f6;
-      font-weight:800;
-      font-size: .92rem;
-      white-space:nowrap;
-    }
-    .disclaimer{
-      margin-top: 10px;
-      color: rgba(184,192,204,.92);
-      font-size: .9rem;
-      line-height:1.5;
-      font-weight:600;
-    }
 
     .gallery{
       display:grid;
@@ -323,12 +251,38 @@
       border: 1px solid var(--line);
       background:#000;
       box-shadow: var(--shadow);
-      aspect-ratio: 4/3;
+      height: 360px;
     }
-    .gallery .img.small{ aspect-ratio: 1/1; }
+    .gallery .img.small{ height: 360px; }
     .gallery img{ width:100%; height:100%; object-fit: cover; display:block; }
 
-    /* FAQ */
+    .price-card{
+      padding: 18px;
+      border-radius: var(--radius2);
+      background: linear-gradient(145deg, rgba(0,255,195,.14), rgba(255,255,255,.02));
+      border: 1px solid rgba(0,255,195,.28);
+    }
+    .price-line{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .price-big{ font-size: 2.05rem; font-weight:800; }
+    .pill2{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px; border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      font-weight:800;
+      font-size: .92rem;
+      white-space:nowrap;
+    }
+    .disclaimer{
+      margin-top: 10px;
+      color: rgba(184,192,204,.92);
+      font-size: .9rem;
+      line-height:1.5;
+      font-weight:600;
+    }
+
     details{
       border: 1px solid rgba(255,255,255,.10);
       border-radius: 16px;
@@ -339,13 +293,11 @@
     summary{
       cursor:pointer;
       font-weight:800;
-      color: var(--text);
       list-style:none;
     }
     summary::-webkit-details-marker{ display:none; }
     details p{ margin: 10px 0 0; color: var(--muted); font-weight:600; line-height:1.55; }
 
-    /* Contact */
     form{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -372,7 +324,6 @@
       background:#25D366; color:#062a12;
       box-shadow: 0 10px 30px rgba(37,211,102,.16);
     }
-    .whatsapp:hover{ filter: brightness(.96); }
 
     footer{
       margin-top: 22px;
@@ -382,17 +333,14 @@
       font-weight:600;
       font-size: .92rem;
     }
-    .footbox{
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.02);
-      padding: 14px;
+    .footlinks{
+      display:flex; gap:14px; flex-wrap:wrap;
+      justify-content:space-between;
+      align-items:center;
     }
-    .footlinks{ display:flex; gap:14px; flex-wrap:wrap; margin-top: 10px; }
     .footlinks a{ color: var(--accent); text-decoration:none; }
     .footlinks a:hover{ text-decoration:underline; }
 
-    /* Responsive */
     @media (max-width: 920px){
       .hero-grid{ grid-template-columns: 1fr; }
       .hero-points{ grid-template-columns: 1fr; }
@@ -400,6 +348,8 @@
       .split{ grid-template-columns: 1fr; }
       .gallery{ grid-template-columns: 1fr; }
       form{ grid-template-columns: 1fr; }
+      .gallery .img, .gallery .img.small{ height: 280px; }
+      .hero-img{ min-height: 280px; }
     }
   </style>
 </head>
@@ -467,12 +417,8 @@
           </p>
         </div>
 
-        <div class="hero-right">
-          <div class="hero-img">
-            <!-- Cambia solo el archivo en /assets/ para actualizar la imagen -->
-            <img src="assets/img/tec-k2-hero.jpg" alt="Tec.K2 Integral PRO en cocina" />
-            <div class="label">Imagen de producto (provisional)</div>
-          </div>
+        <div class="hero-img">
+          <img src="/assets/img/tec-k2-hero.jpg" alt="Tec.K2 Integral PRO en entorno doméstico" />
         </div>
 
       </div>
@@ -543,23 +489,17 @@
     <div class="container">
       <div class="section-title">
         <h2>Galería</h2>
-        <div class="section-note">Imágenes reales / provisionales</div>
+        <div class="section-note">Imágenes del producto</div>
       </div>
 
       <div class="gallery">
         <div class="img">
-          <img src="assets/img/tec-k2-hero.jpg" alt="Tec.K2 Integral PRO - vista principal" />
+          <img src="/assets/img/tec-k2-hero.jpg" alt="Tec.K2 Integral PRO - vista principal" />
         </div>
         <div class="img small">
-          <!-- Cuando me pases la foto del equipo en caja, la pones aquí con el mismo nombre -->
-          <img src="assets/img/tec-k2-box.jpg" alt="Tec.K2 Integral PRO - en caja (pendiente)" />
+          <img src="/assets/img/tec-k2-box.jpg" alt="Tec.K2 Integral PRO - embalaje" />
         </div>
       </div>
-
-      <p class="micro">
-        Para actualizar imágenes: sustituye el archivo en <strong>/assets/</strong> manteniendo el mismo nombre
-        (<strong>tec-k2-hero.jpg</strong> o <strong>tec-k2-box.jpg</strong>). No hace falta tocar el código.
-      </p>
     </div>
   </section>
 
@@ -568,7 +508,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Tecnología y diseño</h2>
-        <div class="section-note">Enfoque técnico · Copy premium sin promesas absolutas</div>
+        <div class="section-note">Copy premium sin promesas absolutas</div>
       </div>
 
       <div class="split">
@@ -589,12 +529,12 @@
           <h3 style="margin:0 0 8px;">Bobinados y conexiones</h3>
           <p>
             Configuración con bobinados y conectores diseñados para un montaje consistente y una revisión sencilla.
-            El objetivo es una instalación limpia, duradera y con mantenimiento predecible.
+            Enfoque en estabilidad, seguridad y mantenimiento predecible.
           </p>
           <ul>
             <li>Montaje guiado y revisión anual recomendada.</li>
             <li>Conectores preparados para inspección técnica.</li>
-            <li>Configuración orientada a estabilidad y seguridad.</li>
+            <li>Diseño orientado a durabilidad.</li>
           </ul>
         </div>
       </div>
@@ -605,46 +545,13 @@
           El sistema incorpora desarrollos protegidos mediante derechos de propiedad industrial (p. ej., modelos de utilidad),
           vinculados a elementos de arquitectura electrónica y componentes de conexión/instalación.
           <br><br>
-          <span class="section-note">Nota:</span> si quieres, aquí añadimos los números de registro y el estado (concedido/en trámite) para máxima solidez.
+          <span class="section-note">Nota:</span> cuando queráis, añadimos números de registro y estado (concedido / en trámite) para máxima solidez.
         </p>
       </div>
 
       <p class="micro">
         *El rendimiento puede variar según dureza del agua, tipo de tubería, caudal y condiciones de instalación.
       </p>
-    </div>
-  </section>
-
-  <!-- INSTALACION -->
-  <section id="instalacion">
-    <div class="container">
-      <div class="section-title">
-        <h2>Instalación</h2>
-        <div class="section-note">Incluida · Realizada por técnico</div>
-      </div>
-
-      <div class="split">
-        <div class="box">
-          <h3 style="margin:0 0 8px;">Proceso típico</h3>
-          <ol>
-            <li>Evaluación rápida del punto de instalación y acceso.</li>
-            <li>Montaje de bobinados y fijación según criterios técnicos.</li>
-            <li>Conexión del equipo y configuración inicial.</li>
-            <li>Comprobación de funcionamiento y recomendaciones.</li>
-          </ol>
-        </div>
-        <div class="box">
-          <h3 style="margin:0 0 8px;">Requisitos</h3>
-          <ul>
-            <li>Acceso a la tubería en el punto acordado.</li>
-            <li>Espacio para fijación segura del equipo.</li>
-            <li>Alimentación eléctrica disponible (según instalación).</li>
-          </ul>
-          <p class="micro" style="margin-top:10px;">
-            Si el acceso es complejo o hay particularidades (cuartos técnicos, comunidades, etc.), se ajusta el plan de instalación.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -685,43 +592,30 @@
     <div class="container">
       <div class="section-title">
         <h2>Preguntas frecuentes</h2>
-        <div class="section-note">Claridad · Expectativas realistas</div>
+        <div class="section-note">Expectativas realistas</div>
       </div>
 
       <details>
         <summary>¿Esto “elimina” la cal?</summary>
         <p>
-          Evitamos promesas absolutas: el sistema está diseñado para <strong>ayudar a reducir los efectos asociados a la cal</strong> en la instalación.
+          Evitamos promesas absolutas: el sistema está diseñado para <strong>ayudar a reducir los efectos asociados a la cal</strong>.
           El resultado depende de dureza del agua, tipo de tubería, caudal y uso.
         </p>
       </details>
 
       <details>
         <summary>¿Qué incluye exactamente la visita?</summary>
-        <p>
-          Instalación profesional (si el acceso lo permite), configuración inicial, comprobación de funcionamiento y recomendaciones.
-        </p>
+        <p>Instalación (si el acceso lo permite), configuración inicial, comprobación de funcionamiento y recomendaciones.</p>
       </details>
 
       <details>
         <summary>¿Hay mantenimiento?</summary>
-        <p>
-          Se recomienda una <strong>revisión anual</strong> para comprobar bobinados y cableado. Es una medida preventiva para mantener el sistema en condiciones óptimas.
-        </p>
+        <p>Se recomienda una <strong>revisión anual</strong> para comprobar bobinados y cableado (medida preventiva).</p>
       </details>
 
       <details>
         <summary>¿Puedo obtener un precio cerrado sin visita?</summary>
-        <p>
-          Podemos orientarte, pero el precio final se confirma tras valorar el punto de instalación y la configuración adecuada.
-        </p>
-      </details>
-
-      <details>
-        <summary>¿Sirve para cualquier vivienda?</summary>
-        <p>
-          Suele ser compatible con instalaciones domésticas, pero hay casos (acceso complicado, instalaciones particulares, etc.) donde se requiere valoración previa.
-        </p>
+        <p>Podemos orientarte, pero el precio final se confirma tras valorar el punto de instalación y la configuración adecuada.</p>
       </details>
     </div>
   </section>
@@ -731,7 +625,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Solicitar visita / Oferta</h2>
-        <div class="section-note">Respuesta rápida · Sin compromiso</div>
+        <div class="section-note">Sin compromiso</div>
       </div>
 
       <div class="box">
@@ -753,36 +647,28 @@
 
           <div class="form-actions">
             <button class="btn" type="submit">Enviar solicitud</button>
-            <!-- Sustituye tu_numero por el número real en formato internacional sin + -->
             <a class="btn whatsapp" href="https://wa.me/tu_numero" target="_blank" rel="noopener">WhatsApp</a>
             <a class="btn outline" href="#precio">Volver a precio</a>
           </div>
         </form>
 
         <p class="micro" style="margin-bottom:0;">
-          Protección de datos: incluiremos los textos de privacidad/cookies en los enlaces del pie (y el titular debe ser la Empresa B).
+          Puedes consultar los textos legales aquí: <a href="/aviso-legal.html">Aviso legal</a>, <a href="/privacidad.html">Privacidad</a>, <a href="/cookies.html">Cookies</a>.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (solo enlaces) -->
   <footer>
     <div class="container">
-      <div class="footbox">
-        <div>
-          <strong>Titular del sitio / comercialización:</strong> EMPRESA B (razón social, CIF, dirección) <br>
-          <strong>Fabricación:</strong> SIRMIA TRADERS SL (si queréis mencionarlo como fabricante)
+      <div class="footlinks">
+        <div>© <span id="y"></span> Tec.K2 Integral PRO</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="/aviso-legal.html">Aviso legal</a>
+          <a href="/privacidad.html">Privacidad</a>
+          <a href="/cookies.html">Cookies</a>
         </div>
-        <div class="footlinks">
-          <a href="#aviso-legal">Aviso legal</a>
-          <a href="#privacidad">Privacidad</a>
-          <a href="#cookies">Cookies</a>
-        </div>
-      </div>
-
-      <div style="margin-top:12px;">
-        © <span id="y"></span> EMPRESA B. Todos los derechos reservados.
       </div>
     </div>
   </footer>
